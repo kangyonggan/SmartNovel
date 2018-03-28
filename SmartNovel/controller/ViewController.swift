@@ -40,6 +40,17 @@ class ViewController: UIViewController {
         
         initData();
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated);
+        
+        // 显示导航条
+        self.navigationController?.setNavigationBarHidden(false, animated: false);
+        
+        // 加载我的收藏
+        let novels = novelDao.findAllFavoriteNovels();
+        self.favoriteCollectionView.loadData(novels);
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -110,11 +121,6 @@ class ViewController: UIViewController {
         } else {
             Toast.showMessage("网络错误，无法加载热门分类", onView: self.view);
         }
-    }
-
-    // 结束输入（立即搜索）
-    @IBAction func end(_ sender: Any) {
-        search(sender);
     }
     
     // 搜索

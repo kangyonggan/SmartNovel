@@ -28,6 +28,13 @@ class NovelTableViewController: UITableViewController {
         super.viewDidLoad();
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated);
+        
+        // 显示导航条
+        self.navigationController?.setNavigationBarHidden(false, animated: false);
+    }
+    
     func refreshNav(_ title: String) {
         self.navigationItem.title = title;
         

@@ -11,6 +11,11 @@
 		114743C2206B650900B21BA4 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114743C1206B650900B21BA4 /* Dictionary.swift */; };
 		114743C4206B651E00B21BA4 /* DictionaryDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114743C3206B651E00B21BA4 /* DictionaryDao.swift */; };
 		114743C6206B655500B21BA4 /* DictionaryKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114743C5206B655500B21BA4 /* DictionaryKey.swift */; };
+		114F27D4206BB0C100D53364 /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114F27D3206BB0C100D53364 /* SettingController.swift */; };
+		114F27D6206BB7AF00D53364 /* ThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114F27D5206BB7AF00D53364 /* ThemeTableViewController.swift */; };
+		114F27D8206BB7CA00D53364 /* ThemeTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114F27D7206BB7CA00D53364 /* ThemeTableCell.swift */; };
+		114F27DA206BC20100D53364 /* SectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114F27D9206BC20100D53364 /* SectionTableViewController.swift */; };
+		114F27DC206BC24000D53364 /* SectionTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114F27DB206BC24000D53364 /* SectionTableCell.swift */; };
 		11C0D8CE206A66BC00654761 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C0D8CD206A66BC00654761 /* AppDelegate.swift */; };
 		11C0D8D0206A66BC00654761 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C0D8CF206A66BC00654761 /* ViewController.swift */; };
 		11C0D8D3206A66BC00654761 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11C0D8D1206A66BC00654761 /* Main.storyboard */; };
@@ -43,6 +48,11 @@
 		114743C1206B650900B21BA4 /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		114743C3206B651E00B21BA4 /* DictionaryDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryDao.swift; sourceTree = "<group>"; };
 		114743C5206B655500B21BA4 /* DictionaryKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryKey.swift; sourceTree = "<group>"; };
+		114F27D3206BB0C100D53364 /* SettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
+		114F27D5206BB7AF00D53364 /* ThemeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTableViewController.swift; sourceTree = "<group>"; };
+		114F27D7206BB7CA00D53364 /* ThemeTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTableCell.swift; sourceTree = "<group>"; };
+		114F27D9206BC20100D53364 /* SectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTableViewController.swift; sourceTree = "<group>"; };
+		114F27DB206BC24000D53364 /* SectionTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTableCell.swift; sourceTree = "<group>"; };
 		11C0D8CA206A66BC00654761 /* SmartNovel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartNovel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11C0D8CD206A66BC00654761 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11C0D8CF206A66BC00654761 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -107,13 +117,13 @@
 		11C0D8CC206A66BC00654761 /* SmartNovel */ = {
 			isa = PBXGroup;
 			children = (
-				11C0D8FE206A8B1A00654761 /* util */,
-				11C0D8FD206A8AE600654761 /* controller */,
 				11C0D8FC206A8AD700654761 /* core */,
-				11C0D8FB206A8ACF00654761 /* constants */,
+				11C0D8FD206A8AE600654761 /* controller */,
 				11C0D8FA206A8AC700654761 /* view */,
 				11C0D8F9206A8AC100654761 /* dao */,
 				11C0D8F8206A8AB700654761 /* model */,
+				11C0D8FB206A8ACF00654761 /* constants */,
+				11C0D8FE206A8B1A00654761 /* util */,
 				11C0D8DC206A66BC00654761 /* Info.plist */,
 				11C0D8D4206A66BC00654761 /* SmartNovel.xcdatamodeld */,
 			);
@@ -150,6 +160,8 @@
 				11C0D8E8206A7FFD00654761 /* FavoriteCollectionCell.swift */,
 				11C0D905206A8F5A00654761 /* NovelTableViewCell.swift */,
 				11C0D907206A901000654761 /* ViewUtil.swift */,
+				114F27D7206BB7CA00D53364 /* ThemeTableCell.swift */,
+				114F27DB206BC24000D53364 /* SectionTableCell.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -181,6 +193,9 @@
 				11C0D8CF206A66BC00654761 /* ViewController.swift */,
 				11C0D903206A8F0900654761 /* NovelTableViewController.swift */,
 				11C0D90B206B52FA00654761 /* SectionDetailController.swift */,
+				114F27D3206BB0C100D53364 /* SettingController.swift */,
+				114F27D5206BB7AF00D53364 /* ThemeTableViewController.swift */,
+				114F27D9206BC20100D53364 /* SectionTableViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -352,6 +367,7 @@
 				11C0D904206A8F0900654761 /* NovelTableViewController.swift in Sources */,
 				11C0D8E3206A72C300654761 /* CategoryCollectionView.swift in Sources */,
 				11C0D90A206B51B000654761 /* Section.swift in Sources */,
+				114F27DC206BC24000D53364 /* SectionTableCell.swift in Sources */,
 				11C0D908206A901000654761 /* ViewUtil.swift in Sources */,
 				114743C4206B651E00B21BA4 /* DictionaryDao.swift in Sources */,
 				11C0D8E7206A7FDB00654761 /* FavoriteCollectionView.swift in Sources */,
@@ -359,6 +375,8 @@
 				11C0D8CE206A66BC00654761 /* AppDelegate.swift in Sources */,
 				11C0D902206A8C4B00654761 /* FileUtil.swift in Sources */,
 				114743C2206B650900B21BA4 /* Dictionary.swift in Sources */,
+				114F27DA206BC20100D53364 /* SectionTableViewController.swift in Sources */,
+				114F27D6206BB7AF00D53364 /* ThemeTableViewController.swift in Sources */,
 				11C0D8F7206A8AA100654761 /* Novel.swift in Sources */,
 				11C0D8EB206A85B400654761 /* Http.swift in Sources */,
 				11C0D90C206B52FA00654761 /* SectionDetailController.swift in Sources */,
@@ -368,6 +386,8 @@
 				11C0D906206A8F5A00654761 /* NovelTableViewCell.swift in Sources */,
 				11C0D8F5206A8A9200654761 /* NovelDao.swift in Sources */,
 				11C0D8D6206A66BC00654761 /* SmartNovel.xcdatamodeld in Sources */,
+				114F27D4206BB0C100D53364 /* SettingController.swift in Sources */,
+				114F27D8206BB7CA00D53364 /* ThemeTableCell.swift in Sources */,
 				11C0D8F3206A88E000654761 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

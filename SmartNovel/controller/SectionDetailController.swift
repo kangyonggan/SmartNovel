@@ -38,8 +38,40 @@ class SectionDetailController: UIViewController, UIWebViewDelegate, UIActionShee
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
         
+        // 更新字体大小和主题
+        updateSizeAndTheme();
+        
         // 不显示导航条
         self.navigationController?.setNavigationBarHidden(true, animated: false);
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        updateSizeAndTheme();
+        webView.stringByEvaluatingJavaScript(from: "document.getElementsByTagName('body')[0].style.webkitTextFillColor='#555555'");
+    }
+    
+    
+    // 更新字体大小和主题
+    func updateSizeAndTheme() {
+        let sizeDict = dictionaryDao.findDictionaryBy(type: DictionaryKey.TYPE_DEFAULT, key: DictionaryKey.FONT_SIZE);
+        
+        var size = 22;
+        if sizeDict != nil {
+            let fSize = Float((sizeDict!.value)!);
+            size = Int(fSize!);
+        }
+        
+        webView.stringByEvaluatingJavaScript(from: "document.getElementsByTagName('body')[0].style.fontSize='\(size)px'");
+        
+        let themeDict = dictionaryDao.findDictionaryBy(type: DictionaryKey.TYPE_DEFAULT, key: DictionaryKey.THEME);
+        
+        var theme = "#FFFFFF";
+        if themeDict != nil {
+            theme = (themeDict!.value)!;
+        }
+        
+        webView.stringByEvaluatingJavaScript(from: "document.getElementsByTagName('body')[0].style.background='\(theme)'");
+        
     }
     
     // 初始化界面
@@ -68,12 +100,7 @@ class SectionDetailController: UIViewController, UIWebViewDelegate, UIActionShee
         // 长按, 弹出菜单
         let longPress = UILongPressGestureRecognizer(target:self, action:#selector(longPressDid(_:)))
         self.webView.addGestureRecognizer(longPress)
-        
-        // 双击收藏/取消
-        let tapSingle=UITapGestureRecognizer(target:self,action:#selector(tapSingleDid))
-        tapSingle.numberOfTapsRequired = 1
-        tapSingle.numberOfTouchesRequired = 1
-        self.view.addGestureRecognizer(tapSingle)
+
     }
     
     // 上/下一章
@@ -87,21 +114,25 @@ class SectionDetailController: UIViewController, UIWebViewDelegate, UIActionShee
     
     // 返回
     @objc func swipeEdge(_ recognizer:UIScreenEdgePanGestureRecognizer){
-        NSLog("返回");
+        self.navigationController?.popViewController(animated: true);
     }
     
     // 长按，弹出菜单
     @objc func longPressDid(_ sender: UILongPressGestureRecognizer){
         if sender.state == .began {
             NSLog("长按响应开始")
-        } else {
+        } else if sender.state == .ended {
             NSLog("长按响应结束")
+            if isLoading() {
+                return;
+            }
+            
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingController") as! SettingController;
+            vc.novel = self.novel;
+            vc.section = self.section;
+            vc.viewController = self;
+            self.navigationController?.pushViewController(vc, animated: true);
         }
-    }
-    
-    // 双击收藏/取消
-    @objc func tapSingleDid(){
-        NSLog("单击了")
     }
     
     // 更新内容
@@ -152,7 +183,7 @@ class SectionDetailController: UIViewController, UIWebViewDelegate, UIActionShee
                 if !isCacheTerminalTask {
                     isCacheTerminalTask = true;
                     // 后台缓存100章
-                    Http.post(UrlConstants.SECTION_CACHE, params: ["code": section.code], callback: sectionCacheCallback)
+                    Http.post(UrlConstants.SECTION_CACHE, params: ["novelCode": novel.code, "code": section.code], callback: sectionCacheCallback)
                 }
             }
         } else {

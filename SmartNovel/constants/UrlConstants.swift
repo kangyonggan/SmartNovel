@@ -12,8 +12,8 @@ import Foundation
 class UrlConstants: NSObject {
     
     // 域名
-//    static let DOMAIN = "https://kangyonggan.com/";
-    static let DOMAIN = "http://127.0.0.1:8080/";
+    static let DOMAIN = "https://kangyonggan.com/";
+//    static let DOMAIN = "http://127.0.0.1:8080/";
     
     // 手机端前缀
     static let MOBILE = "mobile/";

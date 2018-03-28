@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Just
 
 class FavoriteCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -15,6 +16,16 @@ class FavoriteCollectionView: UICollectionView, UICollectionViewDelegate, UIColl
     
     // 收藏的小说
     var novels = [Novel]();
+    
+    // 加载中菊花
+    var loadingView: UIActivityIndicatorView!;
+    
+    // 选中的小说
+    var selectedNovel: Novel!;
+    
+    // 数据库
+    let novelDao = NovelDao();
+    let sectionDao = SectionDao();
     
     // 加载数据
     func loadData(_ novels: [Novel]) {
@@ -43,9 +54,65 @@ class FavoriteCollectionView: UICollectionView, UICollectionViewDelegate, UIColl
     
     // 单元格选中事件
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if isLoading() {
+            return;
+        }
+        
+        selectedNovel = novels[indexPath.row];
+        
+        // 尝试从本地获取章节
+        let section = sectionDao.findSection((selectedNovel.lastSectionCode)!);
+        
+        if section != nil {// 本地有缓存此章节，直接跳到章节详情
+            let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SectionDetailController") as! SectionDetailController;
+            vc.novel = self.selectedNovel;
+            vc.section = section;
+            viewController.navigationController?.pushViewController(vc, animated: true);
+        } else {// 本地没有缓存此章节，调接口
+            // 加载中菊花
+            loadingView = ViewUtil.loadingView(viewController.view);
+            
+            // 异步加载
+            Http.post(UrlConstants.SECTION, params: ["novelCode": selectedNovel.code, "code": selectedNovel.lastSectionCode!], callback: sectionCallback);
+        }
+    }
+    
+    // 查找章节的回调
+    func sectionCallback(res: HTTPResult) {
+        stopLoading();
+        
+        let result = Http.parse(res);
+        
+        var section: Section!;
+        if result.0 {
+            let ss = result.2["section"] as! NSDictionary;
+            section = Section(ss);
+        } else {
+            Toast.showMessage(result.1, onView: self)
+            return;
+        }
+        
+        DispatchQueue.main.async {
+            let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SectionDetailController") as! SectionDetailController;
+            vc.novel = self.selectedNovel;
+            vc.section = section;
+            self.viewController.navigationController?.pushViewController(vc, animated: true);
+        }
         
     }
     
+    // 判断是否正在加载
+    func isLoading() -> Bool {
+        return loadingView != nil && loadingView.isAnimating;
+    }
+    
+    // 停止加载中动画
+    func stopLoading() {
+        DispatchQueue.main.async {
+            self.loadingView.stopAnimating();
+            self.loadingView.removeFromSuperview();
+        }
+    }
 }
 
 
