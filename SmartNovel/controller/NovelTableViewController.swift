@@ -22,6 +22,7 @@ class NovelTableViewController: UITableViewController {
     
     // 数据库
     let novelDao = NovelDao();
+    let sectionDao = SectionDao();
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -74,7 +75,21 @@ class NovelTableViewController: UITableViewController {
             // 异步加载第一章
             Http.post(UrlConstants.SECTION_FIRST, params: ["novelCode": selectedNovel.code], callback: sectionCallback);
         } else {
+            // 尝试从本地获取章节
+            let section = sectionDao.findSection((novel?.lastSectionCode)!);
             
+            if section != nil {// 本地有缓存此章节，直接跳到章节详情
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "SectionDetailController") as! SectionDetailController;
+                vc.novel = self.selectedNovel;
+                vc.section = section;
+                self.navigationController?.pushViewController(vc, animated: true);
+            } else {// 本地没有缓存此章节，调接口
+                // 加载中菊花
+                loadingView = ViewUtil.loadingView(self.view);
+                
+                // 异步加载
+                Http.post(UrlConstants.SECTION, params: ["code": novel!.lastSectionCode!], callback: sectionCallback);
+            }
         }
     }
     
