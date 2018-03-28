@@ -57,9 +57,63 @@ class NovelTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if isLoading() {
+            return;
+        }
+        
+        selectedNovel = novels[indexPath.row];
+        
+        // 从本地读取book，获取用户最后读取的章节代码
+        let novel = novelDao.findNovelByCode(selectedNovel.code);
+        
+        // 如果本地没有，走接口获取小说第一章节
+        if novel == nil {
+            // 加载中菊花
+            loadingView = ViewUtil.loadingView(self.view);
+            
+            // 异步加载第一章
+            Http.post(UrlConstants.SECTION_FIRST, params: ["novelCode": selectedNovel.code], callback: sectionCallback);
+        } else {
+            
+        }
+    }
+    
+    // 查找章节的回调
+    func sectionCallback(res: HTTPResult) {
+        stopLoading();
+        
+        let result = Http.parse(res);
+        
+        var section: Section!;
+        if result.0 {
+            let ss = result.2["section"] as! NSDictionary;
+            section = Section(ss);
+        } else {
+            Toast.showMessage(result.1, onView: self.tableView)
+            return;
+        }
+        
+        DispatchQueue.main.async {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "SectionDetailController") as! SectionDetailController;
+            vc.novel = self.selectedNovel;
+            vc.section = section;
+            self.navigationController?.pushViewController(vc, animated: true);
+        }
         
     }
   
+    // 判断是否正在加载
+    func isLoading() -> Bool {
+        return loadingView != nil && loadingView.isAnimating;
+    }
+    
+    // 停止加载中动画
+    func stopLoading() {
+        DispatchQueue.main.async {
+            self.loadingView.stopAnimating();
+            self.loadingView.removeFromSuperview();
+        }
+    }
 }
 
 

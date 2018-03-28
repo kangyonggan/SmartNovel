@@ -233,6 +233,31 @@
             </objects>
             <point key="canvasLocation" x="1713" y="109"/>
         </scene>
+        <!--Section Detail Controller-->
+        <scene sceneID="7SQ-HP-epN">
+            <objects>
+                <viewController storyboardIdentifier="SectionDetailController" id="k5j-w6-k8D" customClass="SectionDetailController" customModule="SmartNovel" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="y2J-K8-kgG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WvC-hK-OLd">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="VHM-WN-7Jl"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="WvC-hK-OLd" id="IpB-cE-kZX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pFc-mh-IAB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2615.1999999999998" y="108.39580209895054"/>
+        </scene>
     </scenes>
     <resources>
         <image name="no-cover" width="100" height="125"/>

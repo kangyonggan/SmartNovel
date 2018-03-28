@@ -29,6 +29,8 @@
 		11C0D904206A8F0900654761 /* NovelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C0D903206A8F0900654761 /* NovelTableViewController.swift */; };
 		11C0D906206A8F5A00654761 /* NovelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C0D905206A8F5A00654761 /* NovelTableViewCell.swift */; };
 		11C0D908206A901000654761 /* ViewUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C0D907206A901000654761 /* ViewUtil.swift */; };
+		11C0D90A206B51B000654761 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C0D909206B51B000654761 /* Section.swift */; };
+		11C0D90C206B52FA00654761 /* SectionDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C0D90B206B52FA00654761 /* SectionDetailController.swift */; };
 		37C629AE5469764C4F88B42C /* Pods_SmartNovel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 835E08D517F5147DE83784DC /* Pods_SmartNovel.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +59,8 @@
 		11C0D903206A8F0900654761 /* NovelTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelTableViewController.swift; sourceTree = "<group>"; };
 		11C0D905206A8F5A00654761 /* NovelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelTableViewCell.swift; sourceTree = "<group>"; };
 		11C0D907206A901000654761 /* ViewUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtil.swift; sourceTree = "<group>"; };
+		11C0D909206B51B000654761 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		11C0D90B206B52FA00654761 /* SectionDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionDetailController.swift; sourceTree = "<group>"; };
 		835E08D517F5147DE83784DC /* Pods_SmartNovel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartNovel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87BEDA19F1734A7209826AF6 /* Pods-SmartNovel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartNovel.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartNovel/Pods-SmartNovel.release.xcconfig"; sourceTree = "<group>"; };
 		F8C06331C6243ECE090E0244 /* Pods-SmartNovel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartNovel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartNovel/Pods-SmartNovel.debug.xcconfig"; sourceTree = "<group>"; };
@@ -113,6 +117,7 @@
 			children = (
 				11C0D8F6206A8AA100654761 /* Novel.swift */,
 				11C0D8F2206A88E000654761 /* Category.swift */,
+				11C0D909206B51B000654761 /* Section.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -163,6 +168,7 @@
 			children = (
 				11C0D8CF206A66BC00654761 /* ViewController.swift */,
 				11C0D903206A8F0900654761 /* NovelTableViewController.swift */,
+				11C0D90B206B52FA00654761 /* SectionDetailController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -331,6 +337,7 @@
 				11C0D8ED206A860800654761 /* AppConstants.swift in Sources */,
 				11C0D904206A8F0900654761 /* NovelTableViewController.swift in Sources */,
 				11C0D8E3206A72C300654761 /* CategoryCollectionView.swift in Sources */,
+				11C0D90A206B51B000654761 /* Section.swift in Sources */,
 				11C0D908206A901000654761 /* ViewUtil.swift in Sources */,
 				11C0D8E7206A7FDB00654761 /* FavoriteCollectionView.swift in Sources */,
 				11C0D8D0206A66BC00654761 /* ViewController.swift in Sources */,
@@ -338,6 +345,7 @@
 				11C0D902206A8C4B00654761 /* FileUtil.swift in Sources */,
 				11C0D8F7206A8AA100654761 /* Novel.swift in Sources */,
 				11C0D8EB206A85B400654761 /* Http.swift in Sources */,
+				11C0D90C206B52FA00654761 /* SectionDetailController.swift in Sources */,
 				11C0D8EF206A863200654761 /* UrlConstants.swift in Sources */,
 				11C0D8F1206A86B400654761 /* Toast.swift in Sources */,
 				11C0D8E9206A7FFD00654761 /* FavoriteCollectionCell.swift in Sources */,
